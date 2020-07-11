@@ -31,19 +31,21 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          align-items: center;
         }
 
         main {
+          width: 100%;
+          max-width: 960px;
           padding: 5rem 0.4rem;
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
           align-items: center;
         }
 
         .title {
-          margin: 0;
+          margin-bottom: 56px;
           line-height: 1.15;
           font-size: 4rem;
         }
