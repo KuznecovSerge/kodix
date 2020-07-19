@@ -1,18 +1,17 @@
 import { Radio } from 'antd';
 
 export default function DkSelectColor(props) {
-
-  const { label } = props;
+  const { className, label } = props;
 
   return (
-    <div className="dkcolor">
+    <div className={`dkcolor ${className}`}>
       <span className="dkcolor__label">{label}</span>
       <Radio.Group className="dkcolor__color" {...props}>
-        <Radio.Button value="a" style={{'background-color' : '#fff'}}/>
-        <Radio.Button value="b" style={{'background-color' : '#000'}}/>
-        <Radio.Button value="c" style={{'background-color' : '#cbcbcc'}}/>
-        <Radio.Button value="d" style={{'background-color' : '#d74345'}}/>
-        <Radio.Button value="e" style={{'background-color' : '#88c504'}}/>
+        <Radio.Button value="a" style={{ backgroundColor : '#fff'}}/>
+        <Radio.Button value="b" style={{ backgroundColor : '#000'}}/>
+        <Radio.Button value="c" style={{ backgroundColor : '#cbcbcc'}}/>
+        <Radio.Button value="d" style={{ backgroundColor : '#d74345'}}/>
+        <Radio.Button value="e" style={{ backgroundColor : '#88c504'}}/>
       </Radio.Group>
 
       <style jsx global>{`

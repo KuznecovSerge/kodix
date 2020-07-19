@@ -3,6 +3,7 @@ import { Select } from 'antd';
 import omit from 'lodash/omit';
 
 export default function DkSelect(props) {
+  const { className } = props;
   const { label, defaultValue, onChange } = props;
   const [labelUp, setlabelUp] = useState(false);
 
@@ -20,7 +21,7 @@ export default function DkSelect(props) {
   const inputProps = omit(props, 'onChange');
 
   return (
-    <div className="dkselect">
+    <div className={`dkselect ${className}`}>
       <span className={labelUp ? 'dkselect__label dkselect__label--up' : 'dkselect__label'}>{label}</span>
       <Select 
         className="dkselect__select"

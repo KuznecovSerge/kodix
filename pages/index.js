@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import AutoFindPanel from '../components/AutoFindPanel'
+import CarFindPanel from '../components/CarFindPanel'
+import CarTable from '../components/CarTable'
 
 export default function Home() {
   return (
-    <div className="container">
+    <div className="main-layout">
       <Head>
         <title>Capitan Quack</title>
         <link rel="icon" href="/favicon.ico" />
@@ -18,46 +19,55 @@ export default function Home() {
           ¡Ay caramba!
         </h1>
 
-        <AutoFindPanel/>
+        <div className="carsearchpage">
+          <CarFindPanel className="carsearchpage__filters"/>
+          <CarTable className="carsearchpage__table"/>
+        </div>
 
       </main>
 
       <Footer/>
 
-      <style jsx>{`
-        .container {
+      <style jsx global>{`
+        .main-layout {
           min-height: 100vh;
           min-width: 280px;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+
+          & main {
+            width: 100%;
+            max-width: 960px;
+            padding: 5rem 0.4rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          & .title {
+            margin-bottom: 56px;
+            line-height: 1.15;
+            font-size: 4rem;
+            text-align: center;
+          }
+
         }
 
-        main {
+        .carsearchpage {
           width: 100%;
-          max-width: 960px;
-          padding: 5rem 0.4rem;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+
+          &__filters {
+            margin-bottom: 50px;
+          }
+
+          &__table {
+            width: 100%;
+          }
         }
 
-        .title {
-          margin-bottom: 56px;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-      `}</style>
-
-      <style jsx global>{`
         html,
         body {
           padding: 0;

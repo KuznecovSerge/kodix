@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import omit from 'lodash/omit';
 
 export default function DkInput(props) {
+  const { className } = props;
   const { label, defaultValue, onChange } = props;
   const [labelUp, setlabelUp] = useState(false);
 
@@ -20,7 +21,7 @@ export default function DkInput(props) {
   const inputProps = omit(props, 'onChange');
 
   return (
-    <div className="dkinput">
+    <div className={`dkinput ${className}`}>
       <span className={labelUp ? 'dkinput__label dkinput__label--up' : 'dkinput__label'}>{label}</span>
       <Input className="dkinput__input" onChange={handleChange} {...inputProps}/>
 

@@ -1,9 +1,10 @@
 import { Button } from 'antd';
 
 export default function DkButton(props) {
+  const { className } = props;
 
   return (
-    <div className="dkbutton">
+    <div className={`dkbutton ${className}`}>
       <Button {...props}/>
 
       <style jsx global>{`
