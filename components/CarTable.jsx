@@ -1,6 +1,7 @@
+import { useEffect } from 'react'; 
 import { connect } from 'react-redux';
-import { Table, Dropdown, Menu } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Table } from 'antd';
+import { fetchCars } from '../redux/store';
 
 const columns = [
   {
@@ -9,10 +10,10 @@ const columns = [
     key: 'title',
     render: (text, record) => {
       return <div>
-        <div>{record.title}</div>
-        <div>{record.description}</div>
+        <div className="car-table__title">{record.title}</div>
+        <div className="car-table__description">{record.description}</div>
       </div>
-    }
+    },
   },
   {
     title: 'Год',
@@ -23,6 +24,10 @@ const columns = [
     title: 'Цвет',
     dataIndex: 'color',
     key: 'color',
+    render: (color) => {
+      return <div className="car-table__color" style={{backgroundColor: color}}/>
+    },
+    align: 'center',
   },
   {
     title: 'Статус',
@@ -39,16 +44,33 @@ const columns = [
         return 'Неизвестно';
       }
     },
+    width: '120px',
   },
   {
     title: 'Цена',
     dataIndex: 'price',
     key: 'price',
+    render: (price, record) => (
+      price.toLocaleString("ru")+' руб.'
+    ),
+    width: '120px',
+  },
+  {
+    title: '',
+    key: 'action',
+    render: (text, record) => (
+      <span className="car-table__action">Удалить</span>
+    ),
+    width: '100px',
   },
 ];
 
 const CarTable = (props) => {
-  const { className, cars } = props;
+  const { className, cars, getCars } = props;
+
+  useEffect(()=>{
+    getCars();
+  }, []);
 
 	return (
 		<div className={`car-table ${className}`}>
@@ -56,7 +78,6 @@ const CarTable = (props) => {
 				columns={columns}
 				dataSource={cars} rowKey="id"
 				className="car-table__table"
-				size="small" 
 				pagination={false}
 				// scroll={{ y: 300 }}
 				// summary={summary}
@@ -70,7 +91,63 @@ const CarTable = (props) => {
 					}
 
           &__table {
-						width: 100%
+						width: 100%;
+          }
+
+          & .ant-table-thead tr th {
+            background-color: #c4092f;
+            font-size: 15px;
+            color: #fff;
+            font-weight: 500;
+            padding: 12px 6px;
+
+            &:first-of-type {
+              padding-left: 15px;
+            }
+          }
+
+          & .ant-table-tbody tr td {
+            background-color: #f5f6f6;
+            vertical-align: top;
+            font-size: 15px;
+            color: #323232;
+            font-weight: 300;
+            padding: 12px 6px;
+
+            &:first-of-type {
+              padding-left: 15px;
+            }
+          }
+
+          &__color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e5e5; 
+          }
+
+          &__title {
+            max-width: 200px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          &__description {
+            font-size: 13px;
+            color: #8b9497;
+          }
+
+          &__action {
+            font-size: 14px;
+            color: #8b9497;
+            padding: 6px 15px;
+
+            &:hover {
+              background-color: #000;
+              color: #ffffff;
+              border-radius: 12px;
+            }
           }
 
 				}
@@ -87,4 +164,8 @@ const mapStateToProps = (store) => {
   cars: store.cars,
 }};
 
-export default connect(mapStateToProps, null)(CarTable);
+const mapDispatchToProps = dispatch => ({
+  getCars: () => fetchCars(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarTable);

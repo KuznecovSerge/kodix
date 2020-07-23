@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { fetchCars } from '../redux/store';
 import { Form, Select } from 'antd';
 import DkInput from './DkInput';
+import DkInputNumber from './DkInputNumber';
 import DkSelect from './DkSelect';
 import DkSelectColor from './DkSelectColor';
 import DkButton from './DkButton';
@@ -20,10 +21,13 @@ const CarFindPanel = (props) => {
             <DkInput label="Название" />
           </Form.Item>
           <Form.Item className="carfindpanel__row1col">
-            <DkInput label="Год" />
+            <DkInput label="Год" type="number" />
           </Form.Item>
           <Form.Item className="carfindpanel__row1col">
-            <DkInput label="Цена" />
+            <DkInputNumber
+              label="Цена"
+              formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+            />
           </Form.Item>
         </div>
         <Form.Item>
