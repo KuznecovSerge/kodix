@@ -35,6 +35,11 @@ const reducer = (state = initialState, action) => {
         loading: false,
         error: true,
       };
+    case 'ADD_CAR':
+      return {
+        ...state,
+        cars: [...state.cars, action.newCar ]
+      }
     default:
       return state;
   }
@@ -51,6 +56,10 @@ const requestCarsSuccess = (data) => {
 
 const requestCarsError = () => {
   return { type: 'REQUEST_CARS_FAILED' }
+};
+
+export const addCar = (data) => {
+  return { type: 'ADD_CAR', newCar: data }
 };
 
 export const fetchCars = (dispatch) => {

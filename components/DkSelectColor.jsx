@@ -7,11 +7,11 @@ export default function DkSelectColor(props) {
     <div className={`dkcolor ${className}`}>
       <span className="dkcolor__label">{label}</span>
       <Radio.Group className="dkcolor__color" {...props}>
-        <Radio.Button value="a" style={{ backgroundColor : '#fff'}}/>
-        <Radio.Button value="b" style={{ backgroundColor : '#000'}}/>
-        <Radio.Button value="c" style={{ backgroundColor : '#cbcbcc'}}/>
-        <Radio.Button value="d" style={{ backgroundColor : '#d74345'}}/>
-        <Radio.Button value="e" style={{ backgroundColor : '#88c504'}}/>
+        <Radio.Button value="#ffffff" style={{ backgroundColor : '#fff'}}/>
+        <Radio.Button value="#000000" style={{ backgroundColor : '#000'}}/>
+        <Radio.Button value="#cbcbcc" style={{ backgroundColor : '#cbcbcc'}}/>
+        <Radio.Button value="#d74345" style={{ backgroundColor : '#d74345'}}/>
+        <Radio.Button value="#88c504" style={{ backgroundColor : '#88c504'}}/>
       </Radio.Group>
 
       <style jsx global>{`
