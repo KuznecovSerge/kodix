@@ -9,14 +9,15 @@ import DkButton from './DkButton';
 
 const { Option } = Select;
 
-// Компонент назван "Панель поиска", потому что на первый взгляд это был точно фильтр дла поиска :)
+// Компонент назван "Панель поиска", потому что на первый взгляд это был точно фильтр для поиска :)
 // Название оставил, но сейчас он добавляет в таблицу новый авто
 
 const CarFindPanel = (props) => {
   const { className, cars, add } = props;
 
   const onFinish = values => {
-    add(values);
+    const nextId = Math.max.apply(null, cars.map(item => item.id)) + 1 ;
+    add({...values, id: nextId});
   };
 
   const rules = {
@@ -40,12 +41,9 @@ const CarFindPanel = (props) => {
     ],
   }
 
-  const nextId = () => ( Math.max.apply(null, cars.map(item => item.id)) + 1 );
-
   return (
 		<div className={`carfindpanel ${className}`}>
-			<Form className="duck-form" onFinish={onFinish} initialValues={{ id: nextId }}
-      >
+			<Form className="duck-form" onFinish={onFinish}>
         <div className="carfindpanel__row1">
           <Form.Item className="carfindpanel__row1col" name="title" rules={rules.name}>
             <DkInput label="Название" />

@@ -2,32 +2,32 @@ export default function Footer() {
     return (
       <footer>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://github.com/KuznecovSerge"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+          © CAPTAIN QUACK<br/>
+					Десница тысячеления и моллюск!
         </a>
 
 				<style jsx>{`
 					footer {
 						width: 100%;
 						height: 100px;
-						border-top: 1px solid #eaeaea;
 						display: flex;
 						justify-content: center;
 						align-items: center;
-					}
-
-					footer img {
-						margin-left: 0.5rem;
+						background-color: #282d30;
+						font-size: 11px;
+						color: #ffffff;
+						font-weight: 300;
 					}
 
 					footer a {
 						display: flex;
 						justify-content: center;
 						align-items: center;
+						text-align: center;
 					}
 
 					a {

@@ -1,12 +1,12 @@
 import { useEffect } from 'react'; 
 import { connect } from 'react-redux';
 import { Table } from 'antd';
-import { fetchCars } from '../redux/store';
+import { fetchCars, removeCar } from '../redux/store';
 
 const { Column } = Table;
 
 const CarTable = (props) => {
-  const { className, cars, getCars } = props;
+  const { className, cars, getCars, delCar } = props;
 
   useEffect(()=>{
     getCars();
@@ -48,7 +48,13 @@ const CarTable = (props) => {
           render={ price => `${price.toLocaleString("ru")} руб.` }
         />
         <Column title="" key="action" width="100px"
-          render={ (text, record) => <span className="car-table__action">Удалить</span> }
+          render={ (text, record) => 
+            <span 
+              className="car-table__action"
+              onClick={()=>delCar(record.id)}
+              >Удалить
+            </span> 
+          }
         />
       </Table>
 
@@ -181,6 +187,7 @@ const mapStateToProps = (store) => ({ cars: store.cars });
 
 const mapDispatchToProps = dispatch => ({
   getCars: () => fetchCars(dispatch),
+  delCar: (index) => dispatch(removeCar(index))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarTable);

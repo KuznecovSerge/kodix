@@ -40,6 +40,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         cars: [...state.cars, action.newCar ]
       }
+    case 'REMOVE_CAR':
+      return {
+        ...state,
+        cars: state.cars.filter(item => item.id !== action.id)
+      }
     default:
       return state;
   }
@@ -60,6 +65,10 @@ const requestCarsError = () => {
 
 export const addCar = (data) => {
   return { type: 'ADD_CAR', newCar: data }
+};
+
+export const removeCar = (data) => {
+  return { type: 'REMOVE_CAR', id: data }
 };
 
 export const fetchCars = (dispatch) => {
